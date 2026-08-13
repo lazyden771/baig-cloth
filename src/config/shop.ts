@@ -7,9 +7,9 @@ export const SHOP = {
   tagline: "Unstitched & stitched fabric for every occasion.",
 
   // WhatsApp number in international format, digits only, no "+", no spaces.
-  // Example: Pakistan number 0300-1234567 -> "923001234567"
+  // Example: Pakistan number 0300-1234567 -> "923265382969"
   // TODO: replace with the real shop WhatsApp number.
-  whatsappNumber: "923001234567",
+  whatsappNumber: "923265382969",
 
   // Shown on the Contact page. Can be the same number, formatted for reading.
   phoneDisplay: "+92 300 1234567", // TODO
