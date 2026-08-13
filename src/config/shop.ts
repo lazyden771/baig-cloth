@@ -12,7 +12,7 @@ export const SHOP = {
   whatsappNumber: "923265382969",
 
   // Shown on the Contact page. Can be the same number, formatted for reading.
-  phoneDisplay: "+92 300 1234567", // TODO
+  phoneDisplay: "+92 326 5382969", // TODO
 
   address: "Main Bazaar Road", // TODO
   city: "Your City, Pakistan", // TODO
