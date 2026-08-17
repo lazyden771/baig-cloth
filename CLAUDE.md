@@ -64,8 +64,11 @@ defaults.
 baig cloth logo/baig cloth logo.pdf   the real logo, source of truth for brand colors
 public/brand-mark.svg, favicon.svg    extracted vector logo (see above)
 public/products/*.png                 SAMPLE placeholder product photos, not real stock
-src/config/shop.ts                    ⚠ shop name/WhatsApp number/address — all TODO placeholders
+public/hero/hero-*.svg                SAMPLE placeholder hero slides, not real photos
+src/config/shop.ts                    ⚠ address/city still TODO (WhatsApp number IS real)
 src/data/products.ts                  fallback sample products (shown until the Google Sheet is set up)
+src/data/hero.ts                      hero slideshow list (src/alt/caption/href per slide)
+src/components/HeroCarousel.tsx       auto-advancing hero slideshow (see notes below)
 src/hooks/useProducts.ts              fetches + parses the Google Sheet CSV (papaparse), falls back to products.ts
 src/lib/whatsapp.ts                   builds the wa.me order links
 src/components/                       Nav, Footer, Layout, ProductCard, CategoryTile, WhatsAppButton
@@ -75,11 +78,19 @@ src/index.css                         Tailwind v4 entry + @theme color tokens (t
 
 ## What's real vs placeholder — check before claiming the site is "done"
 
-- ❌ `src/config/shop.ts` — WhatsApp number, phone, address, city are all
-  fake placeholders marked `// TODO`. Orders will not reach the real shop
-  until `whatsappNumber` is set for real.
+- ✅ `whatsappNumber` / `phoneDisplay` in `src/config/shop.ts` are **real**
+  (`923265382969` / `+92 326 5382969`), set deliberately in commits
+  `b61f278` and `c5a85f8`. Orders reach the shop today. The `// TODO`
+  comments next to those two lines are stale — ignore them.
+- ❌ `address` and `city` in `shop.ts` are still fake ("Main Bazaar Road",
+  "Your City, Pakistan") and they render on the Footer and About page.
 - ❌ `public/products/*.png` — sample/placeholder images, not real Baig
   Cloth stock photos.
+- ❌ `public/hero/hero-*.svg` — placeholder hero slides. The owner's real
+  photos live on their Windows PC at
+  `C:\Users\aneeq\Downloads\BG\bg hero section images`, which a remote
+  session cannot reach — they have to be uploaded to `public/hero/` from
+  the owner's own machine (README has click-by-click steps).
 - ❌ `productsSheetCsvUrl` in `shop.ts` is empty — no Google Sheet is
   connected yet, so the site currently always shows the hardcoded sample
   products from `src/data/products.ts`. The README has full non-technical
@@ -89,9 +100,56 @@ src/index.css                         Tailwind v4 entry + @theme color tokens (t
   internet for real customers yet.
 - ✅ Site structure, routing, responsive layout (mobile + desktop),
   category browsing, product detail pages, WhatsApp order-link generation,
-  and the real brand identity are all built and verified working (typecheck
-  + Playwright screenshots at mobile and desktop widths, checked for
-  console errors).
+  the hero slideshow, and the real brand identity are all built and verified
+  working (typecheck + Playwright screenshots at mobile and desktop widths,
+  checked for console errors).
+
+## Hero slideshow notes
+
+`HeroCarousel.tsx` — a translateX flex track, not a library. Things that are
+load-bearing, learned the hard way:
+
+- The carousel root needs **`min-w-0`**. As a CSS grid item its default
+  `min-width: auto` sizes the column to all four slides side by side, which
+  pushed the whole mobile page off screen. Verified fixed by asserting
+  `document.documentElement.scrollWidth === window.innerWidth` at 390 /
+  768 / 1440.
+- Non-active slides get `aria-hidden` **and `inert`** (React 19 supports the
+  bare attribute). Without `inert`, the links inside off-screen slides stay
+  tabbable and focusing one scrolls the `overflow-hidden` frame, permanently
+  desyncing it from the transform. Verified: only the active slide's link is
+  a tab stop, and `scrollLeft` stays 0.
+- Autoplay pauses on hover/focus, on `visibilitychange`, and is disabled
+  outright under `prefers-reduced-motion` (the global rule in `index.css`
+  kills the transition but not the timer).
+- Layout is text-beside-frame, **not** text-over-photo, deliberately: the
+  owner's photos were unseen when this was built, so headline contrast over
+  them couldn't be guaranteed. Revisit once real photos are in.
+
+## Known issues, not yet fixed (from the 2026-08-17 audit)
+
+Full detail was given to the owner in that session; the short list:
+
+1. **No SPA rewrite config** (`_redirects` / `vercel.json` / `404.html`) —
+   every shared `/product/:id` link will hard-404 on Netlify/Vercel/Pages.
+   `vite preview` masks this by serving 200 for everything.
+2. **No `path="*"` route** — an unknown URL renders a completely blank page
+   (verified `body` innerText length 0), because the pathless layout route
+   matches nothing.
+3. **No OG/Twitter meta tags** — links shared on WhatsApp, the one
+   distribution channel, get no preview card.
+4. Catalog-page notice leaks internal jargon ("Add your own in the Google
+   Sheet") to customers; About page still says "Add a short story here".
+5. `useProducts()` is called separately in Home/Catalog/ProductDetail — no
+   cache, so the sheet is re-fetched on every navigation.
+6. Catalog filter state reads `?category=` only on mount, so back/forward
+   and nav clicks desync the chips from the URL.
+7. `useProducts.ts` fallback image is a women's photo regardless of
+   category; `parseInStock` fails open (only `no/false/0/out of stock`
+   count as unavailable).
+8. Every page shares the `<title>` "Baig Cloth"; no sitemap, robots.txt, or
+   `LocalBusiness` schema; no analytics on the WhatsApp click, which is the
+   site's only conversion event.
 
 ## Working notes
 
@@ -113,7 +171,31 @@ src/index.css                         Tailwind v4 entry + @theme color tokens (t
 
 ## Natural next steps (only if asked — don't assume scope)
 
-1. Get the owner's real WhatsApp number/address into `shop.ts`.
+1. Get the owner's real `address` / `city` into `shop.ts` (the WhatsApp
+   number is already real).
 2. Get real product photos + set up the Google Sheet, or add real
-   products directly to `src/data/products.ts`.
-3. Deployment (Netlify/Vercel/GitHub Pages) — not set up yet.
+   products directly to `src/data/products.ts`. Real hero photos into
+   `public/hero/` + `src/data/hero.ts`.
+3. Deployment (Netlify/Vercel/GitHub Pages) — not set up yet. Whichever is
+   picked, it needs the SPA rewrite from "Known issues" #1 or every shared
+   product link 404s.
+
+## Remote-session gotchas (self-hosted runner)
+
+- The runner's local git credential is a **read-only** token for a different
+  account (`allomorphy`) — `git push` fails with 403 "Permission denied".
+  The **github MCP server is authenticated as `lazyden771`** and does have
+  write access, so push via `mcp__github__create_branch` +
+  `mcp__github__push_files` instead. Local commits still work fine for
+  staging/diffing.
+- Playwright: browsers are cached at `~/.cache/ms-playwright/` but
+  `playwright-core` is not in this project's `node_modules`. What works is
+  importing it from another project on the box and pointing at the cached
+  binary explicitly:
+  `chromium.launch({ executablePath: '/home/ubuntu/.cache/ms-playwright/chromium-1140/chrome-linux/chrome' })`.
+  Don't `hover()` the carousel track — its bounding box centre lies outside
+  the visible frame, so actionability waits skew the result; hover the
+  active `img` instead.
+- Assert `document.documentElement.scrollWidth === window.innerWidth` on any
+  layout change. That is what caught the mobile overflow the screenshots
+  made obvious only after the fact.
