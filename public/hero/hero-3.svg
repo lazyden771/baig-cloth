@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1400" viewBox="0 0 1200 1400">
+  <rect width="1200" height="1400" fill="#aab4c8"/>
+  <g text-anchor="middle" font-family="Manrope, 'Segoe UI', Helvetica, sans-serif" fill="#020202">
+    <text x="600" y="660" font-size="46" font-weight="700" letter-spacing="10">SAMPLE IMAGE</text>
+    <text x="600" y="740" font-size="38" font-weight="600">Men&#8217;s Unstitched</text>
+    <text x="600" y="810" font-size="26" font-weight="500" opacity="0.65">Replace with a real photo &#8212; see README</text>
+  </g>
+</svg>
