@@ -17,8 +17,9 @@ export const SHOP = {
   // TODO: the shop's real street address and city. Left blank on purpose —
   // the footer and About page hide the "Visit" block while these are empty,
   // which is better than showing a made-up address to customers.
-  address: "",
-  city: "",
+  address: "Backside of Taj Mahal, Landa Bazaar", 
+  city: "Jaranwala, ,Pakistan",
+  
 
   instagram: "", // TODO (optional) e.g. "https://instagram.com/baigcloth"
   facebook: "", // TODO (optional)
