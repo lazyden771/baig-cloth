@@ -24,8 +24,7 @@ function usePrefersReducedMotion(): boolean {
  * The rotating banners at the top of the home page. Slides come from
  * src/data/hero.ts. Advances on its own every few seconds, and pauses while
  * the customer is hovering, using the arrows, or has the tab in the
- * background. Honours the "reduce motion" accessibility setting by not
- * auto-advancing at all — the arrows and dots still work.
+ * background.
  */
 export function HeroCarousel() {
   const slides = HERO_SLIDES;
@@ -42,7 +41,10 @@ export function HeroCarousel() {
     [count],
   );
 
-  const autoplay = count > 1 && !interacting && !tabHidden && !reducedMotion;
+  // Autoplay runs even under prefers-reduced-motion — a visitor who asked for
+  // less motion still wants to see all five banners. What changes is the
+  // transition: the slide animation is dropped and the banner swaps instantly.
+  const autoplay = count > 1 && !interacting && !tabHidden;
 
   useEffect(() => {
     if (!autoplay) return;
@@ -101,7 +103,7 @@ export function HeroCarousel() {
     >
       <div className="overflow-hidden rounded-2xl border border-line bg-paper">
         <div
-          className="flex transition-transform duration-700 ease-out"
+          className={`flex ${reducedMotion ? "" : "transition-transform duration-700 ease-out"}`}
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {slides.map((slide, i) => (
@@ -122,6 +124,9 @@ export function HeroCarousel() {
 
       {count > 1 && (
         <div className="mt-4 flex items-center justify-center gap-2">
+          <span className="sr-only" aria-live="polite">
+            {`Banner ${index + 1} of ${count}`}
+          </span>
           <ArrowButton direction="prev" onClick={() => go(index - 1)} />
           <div className="flex items-center gap-1">
             {slides.map((slide, i) => (
