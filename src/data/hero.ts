@@ -20,7 +20,7 @@ export interface HeroSlide {
  * ONCE hero-1.jpg ... hero-5.jpg ARE UPLOADED, make this one edit at the
  * bottom of this file:
  *
- *     export const HERO_SLIDES: HeroSlide[] = [];
+ *     export const HERO_SLIDES: HeroSlide[] = UPLOADED_BANNERS;
  *
  * becomes
  *
@@ -63,4 +63,4 @@ export const UPLOADED_BANNERS: HeroSlide[] = [
  *
  * Set this to UPLOADED_BANNERS once the real images are in public/hero/.
  */
-export const HERO_SLIDES: HeroSlide[] = [];
+export const HERO_SLIDES: HeroSlide[] = UPLOADED_BANNERS;
