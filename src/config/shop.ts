@@ -7,15 +7,18 @@ export const SHOP = {
   tagline: "Unstitched & stitched fabric for every occasion.",
 
   // WhatsApp number in international format, digits only, no "+", no spaces.
-  // Example: Pakistan number 0300-1234567 -> "923265382969"
-  // TODO: replace with the real shop WhatsApp number.
+  // Example: Pakistan number 0300-1234567 -> "923001234567".
+  // This is the real shop number — every order message goes here.
   whatsappNumber: "923265382969",
 
   // Shown on the Contact page. Can be the same number, formatted for reading.
-  phoneDisplay: "+92 326 5382969", // TODO
+  phoneDisplay: "+92 326 5382969",
 
-  address: "Main Bazaar Road", // TODO
-  city: "Your City, Pakistan", // TODO
+  // TODO: the shop's real street address and city. Left blank on purpose —
+  // the footer and About page hide the "Visit" block while these are empty,
+  // which is better than showing a made-up address to customers.
+  address: "",
+  city: "",
 
   instagram: "", // TODO (optional) e.g. "https://instagram.com/baigcloth"
   facebook: "", // TODO (optional)
