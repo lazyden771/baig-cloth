@@ -1,0 +1,3 @@
+# Netlify: serve the app for every path so shared deep links like
+# /product/wu-1 work instead of returning Netlify's 404 page.
+/*  /index.html  200

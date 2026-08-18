@@ -26,8 +26,13 @@ export const CATEGORY_LABELS: Record<ProductCategory, string> = {
 
 /**
  * Shown until a Google Sheet is configured in src/config/shop.ts (or if it
- * fails to load) so the catalog is never blank. Swap these for real
- * products either by editing the sheet, or by editing this file directly.
+ * fails to load) so the catalog is never blank. Swap these for real products
+ * either by editing the sheet, or by editing this file directly.
+ *
+ * These render on the LIVE site, so keep every string customer-facing:
+ * no instructions aimed at the shop owner. The "— Sample" suffix in each
+ * name is deliberate — it stops a visitor ordering an item that doesn't
+ * exist. Delete these entries entirely once real products are in.
  */
 export const FALLBACK_PRODUCTS: Product[] = [
   {
@@ -38,7 +43,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: 4500,
     fabricLabel: "Lawn",
     description:
-      "Sample product. Replace with a real photo, name, price and description in your Google Sheet.",
+      "Sample listing — real stock is being added. Message us on WhatsApp and we'll tell you what's available right now.",
     image: "/products/women-unstitched-1.png",
     inStock: true,
   },
@@ -50,7 +55,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: 3200,
     fabricLabel: "Cotton",
     description:
-      "Sample product. Replace with a real photo, name, price and description in your Google Sheet.",
+      "Sample listing — real stock is being added. Message us on WhatsApp and we'll tell you what's available right now.",
     image: "/products/women-unstitched-2.png",
     inStock: true,
   },
@@ -62,7 +67,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: 8900,
     fabricLabel: "Chiffon",
     description:
-      "Sample product. Replace with a real photo, name, price and description in your Google Sheet.",
+      "Sample listing — real stock is being added. Message us on WhatsApp and we'll tell you what's available right now.",
     image: "/products/women-stitched-1.png",
     inStock: true,
   },
@@ -74,7 +79,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: 5600,
     fabricLabel: "Cambric",
     description:
-      "Sample product. Replace with a real photo, name, price and description in your Google Sheet.",
+      "Sample listing — real stock is being added. Message us on WhatsApp and we'll tell you what's available right now.",
     image: "/products/women-stitched-2.png",
     inStock: true,
   },
@@ -86,7 +91,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: 2800,
     fabricLabel: "Cotton",
     description:
-      "Sample product. Replace with a real photo, name, price and description in your Google Sheet.",
+      "Sample listing — real stock is being added. Message us on WhatsApp and we'll tell you what's available right now.",
     image: "/products/men-unstitched-1.png",
     inStock: true,
   },
@@ -98,7 +103,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     price: 3100,
     fabricLabel: "Wash & Wear",
     description:
-      "Sample product. Replace with a real photo, name, price and description in your Google Sheet.",
+      "Sample listing — real stock is being added. Message us on WhatsApp and we'll tell you what's available right now.",
     image: "/products/men-unstitched-2.png",
     inStock: false,
   },

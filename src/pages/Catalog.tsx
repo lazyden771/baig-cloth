@@ -39,9 +39,15 @@ export function Catalog() {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="text-2xl font-extrabold sm:text-3xl">Catalog</h1>
 
-      {usingFallback && (
+      {/*
+        Dev-only reminder that the Google Sheet isn't wired up yet. Customers
+        must never see this — it used to render in production and told them to
+        "add your own in the Google Sheet".
+      */}
+      {usingFallback && import.meta.env.DEV && (
         <p className="mt-2 rounded-lg bg-paper px-3 py-2 text-xs text-ink-soft">
-          Showing sample products. Add your own in the Google Sheet once it's connected.
+          Dev note: showing sample products from src/data/products.ts. Set
+          productsSheetCsvUrl in src/config/shop.ts to load the real catalog.
         </p>
       )}
 

@@ -12,11 +12,13 @@ export function Footer() {
           </div>
           <p className="mt-2 text-sm text-ink-soft">{SHOP.tagline}</p>
         </div>
-        <div>
-          <h4 className="text-sm font-bold uppercase tracking-wide text-ink-soft">Visit</h4>
-          <p className="mt-2 text-sm">{SHOP.address}</p>
-          <p className="text-sm">{SHOP.city}</p>
-        </div>
+        {(SHOP.address || SHOP.city) && (
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wide text-ink-soft">Visit</h4>
+            {SHOP.address && <p className="mt-2 text-sm">{SHOP.address}</p>}
+            {SHOP.city && <p className="text-sm">{SHOP.city}</p>}
+          </div>
+        )}
         <div>
           <h4 className="text-sm font-bold uppercase tracking-wide text-ink-soft">Contact</h4>
           <p className="mt-2 text-sm">{SHOP.phoneDisplay}</p>
