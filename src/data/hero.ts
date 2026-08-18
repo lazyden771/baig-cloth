@@ -14,39 +14,53 @@ export interface HeroSlide {
 }
 
 /**
- * The rotating banners at the top of the home page.
+ * Your five banners, written out and ready — but NOT switched on yet, because
+ * the image files aren't in `public/hero/` at the time of writing.
  *
- * Right now every `src` points at a placeholder SVG. Once you upload your
- * real banners to `public/hero/` as hero-1.jpg ... hero-5.jpg, change the
- * five ".svg" below to ".jpg" — that's the only edit needed.
+ * ONCE hero-1.jpg ... hero-5.jpg ARE UPLOADED, make this one edit at the
+ * bottom of this file:
  *
- * Export banners at 1712 x 945, or any 16:9 size. See README.md
- * ("Your hero banners") for the full walkthrough.
+ *     export const HERO_SLIDES: HeroSlide[] = [];
+ *
+ * becomes
+ *
+ *     export const HERO_SLIDES: HeroSlide[] = UPLOADED_BANNERS;
+ *
+ * That's the whole switch-on. See README.md ("Your hero banners").
  */
-export const HERO_SLIDES: HeroSlide[] = [
+export const UPLOADED_BANNERS: HeroSlide[] = [
   {
-    src: "/hero/hero-1.svg",
+    src: "/hero/hero-1.jpg",
     alt: "Bold by Design — a statement print for the woman who stands apart. Black printed three-piece suit with red and yellow motifs. Up to 20% off.",
     href: "/catalog",
   },
   {
-    src: "/hero/hero-2.svg",
+    src: "/hero/hero-2.jpg",
     alt: "New arrivals: Effortless Elegance — floral prints, timeless appeal. Ivory and purple floral printed suit with matching dupatta. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
   {
-    src: "/hero/hero-3.svg",
+    src: "/hero/hero-3.jpg",
     alt: "All over printed: Effortless Elegance — floral prints, timeless appeal. Teal green floral printed suit with matching dupatta. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
   {
-    src: "/hero/hero-4.svg",
+    src: "/hero/hero-4.jpg",
     alt: "All over printed: Effortless Elegance — floral prints, timeless appeal. Cream and maroon floral printed suit with gold detailing. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
   {
-    src: "/hero/hero-5.svg",
+    src: "/hero/hero-5.jpg",
     alt: "All over printed collection: Effortless Elegance — floral prints, timeless appeal. Deep maroon printed suit with gold leaf motifs. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
 ];
+
+/**
+ * The banners the site actually shows. Empty on purpose: with no slides the
+ * home page falls back to the plain logo hero, so customers never see
+ * placeholder artwork or "SAMPLE BANNER" text on the live site.
+ *
+ * Set this to UPLOADED_BANNERS once the real images are in public/hero/.
+ */
+export const HERO_SLIDES: HeroSlide[] = [];
