@@ -20,7 +20,7 @@ export interface HeroSlide {
  * ONCE hero-1.jpg ... hero-5.jpg ARE UPLOADED, make this one edit at the
  * bottom of this file:
  *
- *     export const HERO_SLIDES: HeroSlide[] = UPLOADED_BANNERS;
+ *     export const HERO_SLIDES: HeroSlide[] = [];
  *
  * becomes
  *
@@ -31,28 +31,28 @@ export interface HeroSlide {
 export const UPLOADED_BANNERS: HeroSlide[] = [
   {
     src: "/hero/hero-1.jpg",
-    alt: "Bold by Design — a statement print for the woman who stands apart. Black printed three-piece suit with red and yellow motifs. Up to 20% off.",
-    href: "/catalog",
-  },
-  {
-    src: "/hero/hero-2.jpg",
-    alt: "New arrivals: Effortless Elegance — floral prints, timeless appeal. Ivory and purple floral printed suit with matching dupatta. Up to 20% off.",
+    alt: "New arrivals: Effortless Elegance — floral prints, timeless appeal. Ivory and purple floral printed suit with matching purple dupatta. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
   {
-    src: "/hero/hero-3.jpg",
+    src: "/hero/hero-2.jpg",
     alt: "All over printed: Effortless Elegance — floral prints, timeless appeal. Teal green floral printed suit with matching dupatta. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
   {
+    src: "/hero/hero-3.jpg",
+    alt: "All over printed: Effortless Elegance — floral prints, timeless appeal. Cream and maroon floral printed suit with matching dupatta. Up to 20% off.",
+    href: "/catalog?category=women-unstitched",
+  },
+  {
     src: "/hero/hero-4.jpg",
-    alt: "All over printed: Effortless Elegance — floral prints, timeless appeal. Cream and maroon floral printed suit with gold detailing. Up to 20% off.",
+    alt: "All over printed collection: Effortless Elegance — floral prints, timeless appeal. Deep maroon printed suit with gold leaf motifs. Up to 20% off.",
     href: "/catalog?category=women-unstitched",
   },
   {
     src: "/hero/hero-5.jpg",
-    alt: "All over printed collection: Effortless Elegance — floral prints, timeless appeal. Deep maroon printed suit with gold leaf motifs. Up to 20% off.",
-    href: "/catalog?category=women-unstitched",
+    alt: "Bold by Design — a statement print for the woman who stands apart. Black printed suit with red and yellow motifs. Up to 20% off.",
+    href: "/catalog",
   },
 ];
 

@@ -55,7 +55,7 @@ function absoluteSocialUrls(): Plugin {
     transformIndexHtml(html: string) {
       if (!site) return html;
       const base = site.replace(/\/+$/, "");
-      return html.replaceAll('content="/og-image.png"', `content="${base}/og-image.png"`);
+      return html.replaceAll('content="/ogimage.png"', `content="${base}/ogimage.png"`);
     },
   };
 }
