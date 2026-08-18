@@ -36,11 +36,18 @@ function spaFallbackHtml(): Plugin {
  * index.html on the way out. Falls back to leaving the relative paths alone.
  */
 function absoluteSocialUrls(): Plugin {
-  const site =
+  // Hosts expose their domain under different names, and some omit the scheme.
+  const withScheme = (value: string) =>
+    /^https?:\/\//.test(value) ? value : `https://${value}`;
+  const raw =
     process.env.SITE_URL ||
     process.env.URL || // Netlify
     process.env.CF_PAGES_URL || // Cloudflare Pages
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "");
+    process.env.RAILWAY_PUBLIC_DOMAIN || // Railway (no scheme)
+    process.env.RAILWAY_STATIC_URL || // Railway, older projects
+    process.env.VERCEL_URL || // Vercel (no scheme)
+    "";
+  const site = raw ? withScheme(raw) : "";
 
   return {
     name: "absolute-social-urls",
