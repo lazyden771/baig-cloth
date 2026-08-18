@@ -14,12 +14,10 @@ export const SHOP = {
   // Shown on the Contact page. Can be the same number, formatted for reading.
   phoneDisplay: "+92 326 5382969",
 
-  // TODO: the shop's real street address and city. Left blank on purpose —
-  // the footer and About page hide the "Visit" block while these are empty,
-  // which is better than showing a made-up address to customers.
-  address: "Backside of Taj Mahal, Landa Bazaar", 
-  city: "Jaranwala, ,Pakistan",
-  
+  // Shown on the footer and the About page. If either is blanked out, the
+  // "Visit" block hides itself rather than showing a half-empty address.
+  address: "Backside of Taj Mahal, Landa Bazaar",
+  city: "Jaranwala, Pakistan",
 
   instagram: "", // TODO (optional) e.g. "https://instagram.com/baigcloth"
   facebook: "", // TODO (optional)
