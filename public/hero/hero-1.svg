@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1400" viewBox="0 0 1200 1400">
-  <rect width="1200" height="1400" fill="#c9a86f"/>
-  <g text-anchor="middle" font-family="Manrope, 'Segoe UI', Helvetica, sans-serif" fill="#020202">
-    <text x="600" y="660" font-size="46" font-weight="700" letter-spacing="10">SAMPLE IMAGE</text>
-    <text x="600" y="740" font-size="38" font-weight="600">Women&#8217;s Unstitched</text>
-    <text x="600" y="810" font-size="26" font-weight="500" opacity="0.65">Replace with a real photo &#8212; see README</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1712" height="945" viewBox="0 0 1712 945">
+  <rect width="1712" height="945" fill="#262320"/>
+  <rect x="1050" y="0" width="662" height="945" fill="#9a8b3f" opacity="0.14"/>
+  <g font-family="Manrope, 'Segoe UI', Helvetica, sans-serif" fill="#f5f2ea">
+    <text x="130" y="404" font-size="34" font-weight="600" letter-spacing="14">SAMPLE BANNER 1</text>
+    <text x="130" y="500" font-size="78" font-weight="800">Your banner here</text>
+    <text x="130" y="566" font-size="30" font-weight="500" opacity="0.72">Upload hero-1.jpg to public/hero/ &#8212; see README</text>
+    <rect x="130" y="612" width="86" height="5" fill="#9a8b3f"/>
   </g>
 </svg>

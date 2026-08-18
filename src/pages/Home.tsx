@@ -11,50 +11,59 @@ import { useProducts } from "../hooks/useProducts";
 export function Home() {
   const { products } = useProducts();
   const featured = products.slice(0, 3);
-  // With no hero photos added yet, fall back to the centred logo-only hero.
+  // With no banners added yet, fall back to the centred logo-only hero.
   const hasHeroSlides = HERO_SLIDES.length > 0;
 
   return (
     <div>
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
-        <div
-          className={`grid items-center gap-10 ${
-            hasHeroSlides ? "lg:grid-cols-[5fr_7fr] lg:gap-14" : ""
-          }`}
-        >
-          <div className={hasHeroSlides ? "text-center lg:text-left" : "text-center"}>
-            <img
-              src="/brand-mark.svg"
-              alt=""
-              aria-hidden="true"
-              className={`h-20 w-auto sm:h-24 ${hasHeroSlides ? "mx-auto lg:mx-0" : "mx-auto sm:h-40"}`}
-            />
-            <h1 className="mt-6 text-3xl font-extrabold tracking-tight sm:text-5xl">{SHOP.name}</h1>
-            <p
-              className={`mt-3 max-w-xl text-base text-ink-soft sm:text-lg ${
-                hasHeroSlides ? "mx-auto lg:mx-0" : "mx-auto"
-              }`}
-            >
+      {hasHeroSlides ? (
+        <section className="mx-auto max-w-6xl px-4 pt-6 pb-12">
+          {/*
+            The banners carry their own headline and offer in the artwork, so
+            there is deliberately no competing headline beside them — just the
+            brand line and the two actions underneath.
+          */}
+          <HeroCarousel />
+          <div className="mt-8 text-center">
+            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{SHOP.name}</h1>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-ink-soft sm:text-base">
               {SHOP.tagline}
             </p>
-            <div
-              className={`mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center ${
-                hasHeroSlides ? "lg:justify-start" : ""
-              }`}
-            >
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Link
                 to="/catalog"
                 className="inline-flex min-h-11 items-center justify-center rounded-xl bg-navy px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-navy-shade"
               >
                 Browse Catalog
               </Link>
-              <WhatsAppButton href={buildWhatsAppGeneralLink()} variant="outline" label="Chat on WhatsApp" />
+              <WhatsAppButton
+                href={buildWhatsAppGeneralLink()}
+                variant="outline"
+                label="Chat on WhatsApp"
+              />
             </div>
           </div>
-
-          {hasHeroSlides && <HeroCarousel />}
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="mx-auto flex max-w-6xl flex-col items-center px-4 py-16 text-center sm:py-24">
+          <img src="/brand-mark.svg" alt="" aria-hidden="true" className="h-32 w-auto sm:h-40" />
+          <h1 className="mt-6 text-3xl font-extrabold tracking-tight sm:text-5xl">{SHOP.name}</h1>
+          <p className="mt-3 max-w-xl text-base text-ink-soft sm:text-lg">{SHOP.tagline}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              to="/catalog"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-navy px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-navy-shade"
+            >
+              Browse Catalog
+            </Link>
+            <WhatsAppButton
+              href={buildWhatsAppGeneralLink()}
+              variant="outline"
+              label="Chat on WhatsApp"
+            />
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-6xl px-4 py-10">
         <h2 className="text-xl font-extrabold">Shop by category</h2>

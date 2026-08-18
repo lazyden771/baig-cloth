@@ -21,7 +21,7 @@ function usePrefersReducedMotion(): boolean {
 }
 
 /**
- * The rotating photos at the top of the home page. Slides come from
+ * The rotating banners at the top of the home page. Slides come from
  * src/data/hero.ts. Advances on its own every few seconds, and pauses while
  * the customer is hovering, using the arrows, or has the tab in the
  * background. Honours the "reduce motion" accessibility setting by not
@@ -157,7 +157,7 @@ function Slide({ slide, eager }: { slide: HeroSlide; eager: boolean }) {
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
         decoding="async"
-        className="h-[380px] w-full object-cover sm:h-[440px] lg:h-[500px]"
+        className="aspect-[16/9] w-full object-cover"
       />
       {slide.caption && (
         <div className="flex items-center justify-between gap-3 border-t border-line bg-surface px-4 py-3">
